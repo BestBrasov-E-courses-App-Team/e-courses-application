@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\SectionLesson;
 use App\Http\Requests\StoreSectionLessonRequest;
 use App\Http\Requests\UpdateSectionLessonRequest;
+use App\Models\CourseSection;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SectionLessonController extends Controller
 {
@@ -19,9 +22,13 @@ class SectionLessonController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $section = CourseSection::findOrFail($request->section_id);
+        $section->load('course');
+        return Inertia::render('App/Lessons/Parts/Create', [
+            'section' => $section,
+        ]);
     }
 
     /**
@@ -29,7 +36,19 @@ class SectionLessonController extends Controller
      */
     public function store(StoreSectionLessonRequest $request)
     {
-        //
+        try {
+            $section =  CourseSection::with('course')->findOrFail($request->section_id);
+            SectionLesson::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'course_section_id' => $section->id,
+                'course_id' => $section->course->id,
+            ]);
+
+            $this->flashSuccess("Lesson $request->title has been added!");
+        } catch (\Throwable $th) {
+            $this->flashError($th->getMessage());
+        }
     }
 
     /**

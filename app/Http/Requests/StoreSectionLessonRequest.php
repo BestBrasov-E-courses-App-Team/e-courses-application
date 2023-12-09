@@ -11,7 +11,7 @@ class StoreSectionLessonRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreSectionLessonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required',
+            'section_id' => 'required',
         ];
     }
 }

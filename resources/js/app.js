@@ -46,6 +46,7 @@ import ConfirmDialog from "primevue/confirmdialog";
 import FileUpload from 'primevue/fileupload';
 import Dialog from "primevue/dialog";
 import Menu from "primevue/menu";
+import Tree from "primevue/tree";
 import Divider from "primevue/divider";
 import Toast from "primevue/toast";
 
@@ -78,7 +79,7 @@ createInertiaApp({
             .component("Badge", Badge)
             .component("TabView", TabView)
             .component("TabPanel", TabPanel)
-            .component("TabView", TabView)
+            .component("Tree", Tree)
             .component("Panel", Panel)
             .component("InputText", InputText)
             .component("Textarea", Textarea)

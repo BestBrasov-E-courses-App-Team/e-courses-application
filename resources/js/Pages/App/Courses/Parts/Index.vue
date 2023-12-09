@@ -1,6 +1,6 @@
 <template>
   <Courses>
-    <div class="flex flew">
+    <div class="flex gap-4">
       <Course v-for="course in courses" :key="course.id" :course="course"/>
     </div>
   </Courses>

@@ -18,4 +18,8 @@ class CourseSection extends Model
     {
         return $this->hasMany(SectionLesson::class);
     }
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }
