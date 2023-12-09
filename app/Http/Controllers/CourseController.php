@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use Inertia\Inertia;
 
 class CourseController extends Controller
 {
@@ -13,7 +14,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::all();
+
+        return Inertia::render('App/Courses/Parts/Index', [
+            'courses' => $courses,
+        ]);
     }
 
     /**
@@ -21,7 +26,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('App/Courses/Parts/Create');
     }
 
     /**
@@ -29,7 +34,21 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        //
+        try {
+            $thumnailPath = $request->thumbnail ? $request->file('thumbnail')->store('courses/thumbnails') : null;
+            $thumnailVideoPath = $request->video_thumbnail ? $request->file('video_thumbnail')->store('courses/video_thumbnails') : null;
+
+            Course::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'thumbnail' => $thumnailPath,
+                'video_thumbnail' => $thumnailVideoPath,
+            ]);
+
+            $this->flashSuccess("Course $request->title has been added!");
+        } catch (\Throwable $th) {
+            $this->flashError($th->getMessage());
+        }
     }
 
     /**
@@ -37,7 +56,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return Inertia::render('App/Courses/Parts/Show', [
+            'course' => $course,
+        ]);
     }
 
     /**
