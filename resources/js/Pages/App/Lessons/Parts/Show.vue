@@ -1,5 +1,5 @@
 <template>
-  <Courses class="">
+  <Lessons class="">
     <Panel :header="course.title">
       <p class="m-0">
           {{ course.description }}
@@ -16,12 +16,12 @@
         </ul>
       </div>
     </Panel>
-  </Courses>
+  </Lessons>
 </template>
 
 <script setup>
 import { useForm } from '@inertiajs/vue3';
-import Courses from '../Courses.vue';
+import Lessons from '../Lessons.vue';
 import AddSection from './AddSection.vue';
 
 const props = defineProps({

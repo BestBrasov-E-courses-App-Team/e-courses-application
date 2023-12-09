@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class CourseSection extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+    protected $with = [
+        'lessons'
+    ];
+
+    public function lessons()
+    {
+        return $this->hasMany(SectionLesson::class);
+    }
 }

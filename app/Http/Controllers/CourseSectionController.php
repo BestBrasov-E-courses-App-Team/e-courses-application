@@ -29,7 +29,16 @@ class CourseSectionController extends Controller
      */
     public function store(StoreCourseSectionRequest $request)
     {
-        //
+        try {
+            CourseSection::create([
+                'title' => $request->title,
+                'course_id' => $request->course_id,
+            ]);
+
+            $this->flashSuccess("Section $request->title has been added!");
+        } catch (\Throwable $th) {
+            $this->flashError($th->getMessage());
+        }
     }
 
     /**
