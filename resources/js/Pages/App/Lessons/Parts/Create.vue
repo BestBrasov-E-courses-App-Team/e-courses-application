@@ -12,6 +12,7 @@
               </InputGroupAddon>
               <InputText v-if="newLesson.media_type === 'audio'" class="grow" type="file" accept="audio/*"  @input="newLesson.media = $event.target.files[0]" />
               <InputText v-else-if="newLesson.media_type === 'video'" class="grow" type="file" accept="video/*"  @input="newLesson.media = $event.target.files[0]" />
+              <InputText v-else-if="newLesson.media_type?.toLowerCase() === 'youtube'" class="grow" type="text" v-model="newLesson.media" placeholder="Paste your YouTube Id text here" />
             </InputGroup>
           <div class="text-center">
             <Button type="submit">Add Lesson</Button>
@@ -37,6 +38,7 @@ const props = defineProps({
 const mediaTypes = ref([
   'audio',
   'video',
+  'youtube',
 ])
 
 const newLesson = useForm({

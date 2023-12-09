@@ -42,7 +42,9 @@ class SectionLessonController extends Controller
             $mediaPath = null;
             $mediaType = $request?->media_type;
 
-            if ($request->file('media')) {
+            if ($mediaType === 'youtube') {
+                $mediaPath = $request->media;
+            } elseif ($request->file('media')) {
                 $file = $request->file('media');
                 $mediaPath = $file->storePubliclyAs(
                     'public/lessons/media_files', time().'-'.$file->getClientOriginalName(),

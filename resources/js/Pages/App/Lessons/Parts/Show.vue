@@ -8,6 +8,11 @@
           <div v-if="lesson.media_type === 'audio' && lesson.media_url">
             <audio controls :src="lesson.media_url"></audio>
           </div>
+          <div v-if="lesson.media_type?.toLowerCase() === 'youtube'">
+            <iframe class="w-full min-h-[40vh]"
+              :src="`https://www.youtube.com/embed/${lesson.media_path}?`">
+            </iframe>
+          </div>
         </div>
         <p class="m-0">
           <h4 class="text-lg font-semibold">Description</h4>
