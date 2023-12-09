@@ -1,11 +1,11 @@
 <template>
   <Users>
     <div class="">
-      <DataTable :value="usersList" tableStyle="width: 100%">
-        <Column field="id" header="ID"></Column>
-        <Column field="name" header="Name"></Column>
-        <Column field="email" header="Email"></Column>
-        <Column field="roles" header="Roles"></Column>
+      <DataTable showGridlines stripedRows :value="usersList" tableStyle="width: 100%">
+        <Column field="id" sortable header="ID"></Column>
+        <Column field="name" sortable header="Name"></Column>
+        <Column field="email" sortable header="Email"></Column>
+        <Column field="roles" sortable header="Roles"></Column>
       </DataTable>
     </div>
   </Users>
