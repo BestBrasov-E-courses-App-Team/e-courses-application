@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSectionLessonRequest;
 use App\Http\Requests\UpdateSectionLessonRequest;
 use App\Models\CourseSection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class SectionLessonController extends Controller
@@ -37,12 +38,26 @@ class SectionLessonController extends Controller
     public function store(StoreSectionLessonRequest $request)
     {
         try {
+            $mediaExtension = null;
+            $mediaPath = null;
+            $mediaType = $request?->media_type;
+
+            if ($request->file('media')) {
+                $file = $request->file('media');
+                $mediaPath = $file->storePubliclyAs(
+                    'public/lessons/media_files', time().'-'.$file->getClientOriginalName(),
+                );
+            }
+
             $section =  CourseSection::with('course')->findOrFail($request->section_id);
             SectionLesson::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'course_section_id' => $section->id,
                 'course_id' => $section->course->id,
+                'media_path' => $mediaPath,
+                'media_extension' => $mediaExtension,
+                'media_type' => $mediaType,
             ]);
 
             $this->flashSuccess("Lesson $request->title has been added!");
@@ -56,7 +71,10 @@ class SectionLessonController extends Controller
      */
     public function show(SectionLesson $sectionLesson)
     {
-        //
+        $sectionLesson->load('section');
+        return Inertia::render('App/Lessons/Parts/Show', [
+            'lesson' => $sectionLesson,
+        ]);
     }
 
     /**

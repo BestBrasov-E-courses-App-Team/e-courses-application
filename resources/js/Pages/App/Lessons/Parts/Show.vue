@@ -1,17 +1,29 @@
 <template>
   <Lessons class="">
-    <Panel :header="course.title">
-      <p class="m-0">
-          {{ course.description }}
-      </p>
+    <Panel :header="lesson.title">
+      <div class="my-4">
+          <div v-if="lesson.media_type === 'video' && lesson.media_url">
+            <video controls :src="lesson.media_url"></video>
+          </div>
+          <div v-if="lesson.media_type === 'audio' && lesson.media_url">
+            <audio controls :src="lesson.media_url"></audio>
+          </div>
+        </div>
+        <p class="m-0">
+          <h4 class="text-lg font-semibold">Description</h4>
+            {{ lesson.description ?? 'No description' }}
+        </p>
     </Panel>
-    <Panel header="Sections" class="mt-4">
-      <AddSection :course-id="course.id"/>
+    <Panel header="Attachments" class="mt-4">
+      <!-- <AddAttachment :lesson-id="lesson.id"/> -->
+      <div v-if="!lesson?.attachments?.length">
+        No attachments have been added on this lesson
+      </div>
       <div class="py-3">
         <ul>
-          <li v-for="(section, index) in course.sections" :key="section.id" class="">
+          <li v-for="(attachment, index) in lesson.attachments" :key="attachment.id" class="">
             <Divider />
-            {{ index+1 }}  -  {{ section.title }}
+            {{ index+1 }}  -  {{ attachment.title }}
           </li>
         </ul>
       </div>
@@ -20,12 +32,11 @@
 </template>
 
 <script setup>
-import { useForm } from '@inertiajs/vue3';
 import Lessons from '../Lessons.vue';
-import AddSection from './AddSection.vue';
+import AddAttachment from './AddAttachment.vue';
 
 const props = defineProps({
-  course: {
+  lesson: {
     type: Object,
     default: {},
   }

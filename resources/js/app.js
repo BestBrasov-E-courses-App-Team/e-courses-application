@@ -29,6 +29,7 @@ import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
 import InputNumber from "primevue/inputnumber";
 import InputGroupAddon from "primevue/InputGroupAddon";
+import InputGroup from "primevue/InputGroup";
 import Checkbox from "primevue/checkbox";
 import RadioButton from "primevue/radiobutton";
 import Dropdown from "primevue/dropdown";
@@ -41,6 +42,7 @@ import Carousel from "primevue/carousel";
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
 import Tooltip from "primevue/tooltip";
+import SelectButton from "primevue/selectbutton";
 import ConfirmationService from "primevue/confirmationservice";
 import ConfirmDialog from "primevue/confirmdialog";
 import FileUpload from 'primevue/fileupload';
@@ -78,6 +80,7 @@ createInertiaApp({
             .component("Chip", Chip)
             .component("Badge", Badge)
             .component("TabView", TabView)
+            .component("SelectButton", SelectButton)
             .component("TabPanel", TabPanel)
             .component("Tree", Tree)
             .component("Panel", Panel)
@@ -86,6 +89,7 @@ createInertiaApp({
             .component("InputNumber", InputNumber)
             .component("Fieldset", Fieldset)
             .component("InputGroupAddon", InputGroupAddon)
+            .component("InputGroup", InputGroup)
             .component("Checkbox", Checkbox)
             .component("RadioButton", RadioButton)
             .component("Dropdown", Dropdown)

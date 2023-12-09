@@ -17,6 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->mediumText('title');
             $table->longText('description')->nullable();
+            $table->mediumText('media_path')->nullable();
+            $table->mediumText('media_type')->nullable();
+            $table->mediumText('media_extension')->nullable();
             $table->json('misc')->nullable();
             $table->boolean('public')->default(false);
             $table->timestamps();

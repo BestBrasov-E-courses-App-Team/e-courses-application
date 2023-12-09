@@ -24,7 +24,7 @@
               <ul>
                 <li v-for="(lesson, index) in section.lessons" :key="lesson.id" class="">
                   <Divider />
-                  <div class="flex justify-between items-center">
+                  <div class="flex justify-between items-center hover:cursor-pointer hover:opacity-60" @click="router.get(route('section-lessons.show', lesson?.id))">
                     <div>
                       Lesson {{ index + 1 }}  -  {{ lesson.title }}
                     </div>
