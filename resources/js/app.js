@@ -59,6 +59,9 @@ import Main from './Layouts/Main.vue'
 
 import { createPinia } from 'pinia'
 
+// https://dev.to/geowrgetudor/how-to-use-laravel-permission-by-spatie-in-vue-797
+import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs'
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 const pinia = createPinia()
@@ -114,6 +117,7 @@ createInertiaApp({
 
             .use(plugin)
             .use(pinia)
+            .use(LaravelPermissionToVueJS)
             .use(ZiggyVue)
             .mount(el);
     },

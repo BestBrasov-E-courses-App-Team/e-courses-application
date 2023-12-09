@@ -4,6 +4,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseSectionController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\SectionLessonController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,6 +38,7 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
     
+    Route::resource('users', UserController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('course-sections', CourseSectionController::class);
     Route::resource('section-lessons', SectionLessonController::class);
