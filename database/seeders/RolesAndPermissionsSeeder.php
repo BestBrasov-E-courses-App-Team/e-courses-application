@@ -77,7 +77,17 @@ class RolesAndPermissionsSeeder extends Seeder
                 ]);
             }
 
+            $student_email = 'student@gmail.com';
+            $student = \App\Models\User::where('email', $student_email)->first();
+
+            if (!$student) {
+                $student = \App\Models\User::factory()->create([
+                    'name' => 'Daniel Student',
+                    'email' => $student_email,
+                ]);
+            }
             $superUser->syncRoles(['admin']);
+            $student->syncRoles(['student']);
 
             DB::commit();
         } catch (\Throwable $th) {

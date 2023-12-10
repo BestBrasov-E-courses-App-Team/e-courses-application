@@ -75,6 +75,7 @@ class CourseController extends Controller
         } catch (\Throwable $th) {
             $this->flashError($th->getMessage());
         }
+        return back();
     }
 
     /**
@@ -127,6 +128,7 @@ class CourseController extends Controller
         } catch (\Throwable $th) {
             $this->flashError($th->getMessage());
         }
+        return back();
     }
 
     /**

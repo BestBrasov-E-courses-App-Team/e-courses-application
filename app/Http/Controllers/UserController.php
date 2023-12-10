@@ -72,6 +72,7 @@ class UserController extends Controller
         } else {
             $request->session()->flash('error', 'Nu s-a putut adăuga utilizatorul');
         }
+        return back();
     }
 
     /**
@@ -122,9 +123,11 @@ class UserController extends Controller
 
             $user->syncRoles($request->roles);
             $this->flashSuccess('Utilizatorul a fost actualizat cu succes');
+            return redirect()->route('users.index');
         } else {
              $this->flashError('Nu s-au putut actualiza datele utilizatorului');
         }
+        return back();
     }
 
     /**

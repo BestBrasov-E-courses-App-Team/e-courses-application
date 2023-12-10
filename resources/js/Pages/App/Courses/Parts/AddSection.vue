@@ -4,7 +4,6 @@
         course_id: courseId
       }))">
         <InputText type="text" v-model="newSection.title" placeholder="Title" />
-        <!-- <Textarea type="text" v-model="newSection.description" placeholder="Description" /> -->
         <div class="text-center">
           <Button type="submit">Add Section</Button>
         </div>
@@ -23,7 +22,6 @@ const props = defineProps({
 
 const newSection = useForm({
   title: null,
-  // description: null,
 })
 </script>
 

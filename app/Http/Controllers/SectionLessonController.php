@@ -52,7 +52,7 @@ class SectionLessonController extends Controller
             }
 
             $section =  CourseSection::with('course')->findOrFail($request->section_id);
-            SectionLesson::create([
+            $lesson = SectionLesson::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'course_section_id' => $section->id,
@@ -63,9 +63,11 @@ class SectionLessonController extends Controller
             ]);
 
             $this->flashSuccess("Lesson $request->title has been added!");
+            return  redirect()->route('section-lessons.show', $lesson->refresh()->id);
         } catch (\Throwable $th) {
             $this->flashError($th->getMessage());
         }
+        return back();
     }
 
     /**

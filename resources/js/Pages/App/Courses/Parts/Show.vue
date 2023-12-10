@@ -3,7 +3,6 @@
     <Panel :header="course.title">
       <div>
         <video class="w-full" v-if="course.video_thumbnail_url" :src="course.video_thumbnail_url" :poster="course.thumbnail_url" controls>
-            <!-- <source src="video.mp4" type="video/mp4"> -->
         </video>
         <img class="w-full" v-else-if="course.thumbnail_url" :src="course.thumbnail_url" alt="" srcset="">
       </div>
@@ -34,7 +33,6 @@
               }))">Add Lesson</Button>
             </div>
             <div v-if="section?.lessons.length" class="pl-6">
-              <!-- {{ section?.lessons }} -->
               <ul>
                 <li v-for="(lesson, index) in section.lessons" :key="lesson.id" class="">
                   <Divider />
@@ -48,18 +46,15 @@
             </div>
           </li>
         </ul>
-        <!-- <CourseSidebar :course="course"/> -->
       </div>
     </Panel>
   </Courses>
 </template>
 
 <script setup>
-import { router, useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { router } from '@inertiajs/vue3';
 import Courses from '../Courses.vue';
 import AddSection from './AddSection.vue';
-import CourseSidebar from './CourseSidebar.vue';
 
 const props = defineProps({
   course: {

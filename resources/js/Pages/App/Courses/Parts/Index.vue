@@ -34,7 +34,7 @@ import { router } from '@inertiajs/vue3';
 import Courses from '../Courses.vue';
 import Course from './Course.vue';
 import { useDebounceFn, useUrlSearchParams } from '@vueuse/core'
-import { onMounted, reactive, ref, watch } from 'vue';
+import { reactive, ref, watch } from 'vue';
 
 const props = defineProps({
   courses: {
