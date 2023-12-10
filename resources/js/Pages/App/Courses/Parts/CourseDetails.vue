@@ -4,7 +4,14 @@
       <div class="flex gap-4">
         <div class="basis-2/3 w-full">
           <LessonComponent v-if="activeLesson" :lesson="activeLesson"/>
-          <Panel v-else :header="course.title">
+          <Panel v-else :header="`Course Title: ${course.title}`">
+            <div>
+              <video class="w-full" v-if="course.video_thumbnail_url" :src="course.video_thumbnail_url" :poster="course.thumbnail_url" controls>
+                  <!-- <source src="video.mp4" type="video/mp4"> -->
+              </video>
+              <img class="w-full" v-else-if="course.thumbnail_url" :src="course.thumbnail_url" alt="" srcset="">
+            </div>
+            <h3 class="font-bold py-4 text-lg">Course Description</h3>
             <p class="m-0">
                 {{ course.description }}
             </p>

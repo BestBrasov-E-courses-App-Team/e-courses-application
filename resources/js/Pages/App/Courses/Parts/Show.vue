@@ -1,7 +1,13 @@
 <template>
   <Courses class="">
     <Panel :header="course.title">
-      <p class="m-0">
+      <div>
+        <video class="w-full" v-if="course.video_thumbnail_url" :src="course.video_thumbnail_url" :poster="course.thumbnail_url" controls>
+            <!-- <source src="video.mp4" type="video/mp4"> -->
+        </video>
+        <img class="w-full" v-else-if="course.thumbnail_url" :src="course.thumbnail_url" alt="" srcset="">
+      </div>
+      <p class="my-4">
           {{ course.description }}
       </p>
     </Panel>

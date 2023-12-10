@@ -35,10 +35,10 @@ class CourseController extends Controller
     public function store(StoreCourseRequest $request)
     {
         try {
-            $thumnailPath = $request->thumbnail ? $request->file('thumbnail')->store('courses/thumbnails') : null;
-            $thumnailVideoPath = $request->video_thumbnail ? $request->file('video_thumbnail')->store('courses/video_thumbnails') : null;
+            $thumnailPath = $request->thumbnail ? $request->file('thumbnail')->storePubliclyAs('public/courses/thumbnails', time().'-'. $request->file('thumbnail')->getClientOriginalName()) : null;
+            $thumnailVideoPath = $request->video_thumbnail ? $request->file('video_thumbnail')->storePubliclyAs('public/courses/video_thumbnails', time().'-'. $request->file('video_thumbnail')->getClientOriginalName()) : null;
 
-            Course::create([
+            $course = Course::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'thumbnail' => $thumnailPath,
@@ -46,6 +46,7 @@ class CourseController extends Controller
             ]);
 
             $this->flashSuccess("Course $request->title has been added!");
+            return  redirect()->route('courses.show', $course->refresh()->id);
         } catch (\Throwable $th) {
             $this->flashError($th->getMessage());
         }
@@ -92,7 +93,21 @@ class CourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        try {
+            $thumnailPath = $request->thumbnail ? $request->file('thumbnail')->storePubliclyAs('public/courses/thumbnails', time() . '-' . $request->file('thumbnail')->getClientOriginalName()) : null;
+            $thumnailVideoPath = $request->video_thumbnail ? $request->file('video_thumbnail')->storePubliclyAs('public/courses/video_thumbnails', time() . '-' . $request->file('video_thumbnail')->getClientOriginalName()) : null;
+
+            $course->thumbnail = $thumnailPath ?? $course->thumbnail;
+            $course->video_thumbnail = $thumnailPath ?? $course->video_thumbnail;
+
+            if ($course->save()) {
+                $this->flashSuccess("Course $request->title has been updated!");
+            } else {
+                $this->flashErro("Could not update Course!");
+            }
+        } catch (\Throwable $th) {
+            $this->flashError($th->getMessage());
+        }
     }
 
     /**

@@ -12,13 +12,13 @@
             <InputGroupAddon class="w-max">
               Thumbnail
             </InputGroupAddon>
-            <InputText class="grow" type="file" accept="image/*" v-model="newCourse.thumbnail" />
+            <InputText class="grow" type="file" accept="image/*" @input="newCourse.thumbnail = $event.target.files[0]" />
           </InputGroup>
           <InputGroup class="w-full flex">
             <InputGroupAddon class="w-max">
               Video Thumbnail
             </InputGroupAddon>
-            <InputText class="grow" type="file" accept="video/*" v-model="newCourse.video_thumbnail"/>
+            <InputText class="grow" type="file" accept="video/*" @input="newCourse.video_thumbnail = $event.target.files[0]" />
           </InputGroup>
           <div class="text-center">
             <Button type="submit">Create Course</Button>

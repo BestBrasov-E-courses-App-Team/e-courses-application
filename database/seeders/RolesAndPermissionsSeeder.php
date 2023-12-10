@@ -62,7 +62,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 $role = Role::firstOrCreate(['name' => $role]);
             }
             Role::whereName('student')->first()->givePermissionTo(['lessons.view', 'courses.view']);
-            Role::whereName('teacher')->first()->givePermissionTo(['courses', 'lessons']);
+            Role::whereName('teacher')->first()->givePermissionTo(['courses', 'lessons', 'courses.view', 'lessons.view', 'courses.edit', 'lessons.edit', 'courses.create', 'lessons.create', 'courses.edit', 'lessons.edit', 'courses.delete', 'lessons.delete']);
             Role::whereName('auditor')->first()->givePermissionTo(['courses.view', 'lessons.view', 'courses.edit', 'lessons.edit']);
             Role::whereName('content-manager')->first()->givePermissionTo(['courses.view', 'lessons.view', 'courses.edit', 'lessons.edit','courses.create', 'lessons.create']);
             Role::whereName('admin')->first()->givePermissionTo(Permission::all());

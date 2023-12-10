@@ -7,6 +7,9 @@
       <template #url="slotProps">
           <div @click="$emit('changeLesson', slotProps.node.self)">{{ slotProps.node.label }}</div>
       </template>
+      <template #home="slotProps">
+          <b @click="$emit('changeLesson', slotProps.node.self)">{{ slotProps.node.label }}</b>
+      </template>
     </Tree>
   </div>
 </template>
@@ -23,11 +26,19 @@ const props = defineProps({
 
 const emit = defineEmits(['changeLesson', 'courseDetail'])
 
-const nodes = ref([])
+const nodes = ref([
+  {
+    key: 'xx',
+    label: 'Course Overview',
+    self: null,
+    data: 'home',
+    type: 'home',
+  }
+])
 
 onMounted(() => {
-  nodes.value = props.course.sections.map((el, index) => {
-      return {
+  props.course.sections.forEach((el, index) => {
+      nodes.value.push({
         key: index,
         label: el?.title,
         data: '',
@@ -42,7 +53,7 @@ onMounted(() => {
               type: 'url',
             }
           })
-      }
+      })
     })
 })
 </script>
