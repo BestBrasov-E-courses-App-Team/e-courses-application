@@ -24,13 +24,15 @@ const props = defineProps(['coursesCount', 'hoursThisWeek', 'completedTasks', 'r
                     <div class="text-2xl pt-8">
                         Recently Added Courses
                     </div>
-                    <Carousel :value="recentCourses" :numVisible="3" :numScroll="3">
-                        <template #item="slotProps">
-                            <div class="border-1 surface-border border-round m-2_ text-center py-5 px-3">
-                                <Course class="w-full basis-1/1 md:basis-1/3 shrink-0" :course="slotProps.data"/>
-                            </div>
-                        </template>
-                    </Carousel>
+                    <div class="bg-gray-200 dark:bg-gray-700 rounded-md">
+                        <Carousel :value="recentCourses" :numVisible="3" :numScroll="3">
+                            <template #item="slotProps">
+                                <div class="border-1 surface-border border-round m-2_ text-center py-5 px-3">
+                                    <Course class="w-full basis-1/1 md:basis-1/3 shrink-0" :course="slotProps.data"/>
+                                </div>
+                            </template>
+                        </Carousel>
+                    </div>
                     <!-- <div class="w-full overflow-auto flex flex-row gap-4">
                         <Course class="w-full basis-1/1 md:basis-1/3 shrink-0" v-for="course in recentCourses ?? []" :key="course.id" :course="course"/>
                     </div> -->

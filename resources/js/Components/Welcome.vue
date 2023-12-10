@@ -8,7 +8,7 @@ const props = defineProps(['coursesCount', 'hoursThisWeek', 'completedTasks', 'r
 <template>
     <div>
         <div class="grid grid-cols-3 gap-4 justify-between">
-            <div class="p-12 rounded-xl flex flex-col gap-2 justify-center bg-white dark:bg-gray-800 hover:opacity-90 hover:cursor-pointer" @click="router.get(route('courses.index'))">
+            <div class="p-12 rounded-xl flex flex-col gap-2 justify-center bg-white dark:bg-gray-700 hover:opacity-90 hover:cursor-pointer" @click="router.get(route('courses.index'))">
                 <div class="text-2xl">
                     Courses
                 </div>
@@ -16,7 +16,7 @@ const props = defineProps(['coursesCount', 'hoursThisWeek', 'completedTasks', 'r
                     {{ coursesCount }}
                 </div>
             </div>
-            <div class="p-6 rounded-xl flex flex-col gap-2 justify-center bg-white dark:bg-gray-800">
+            <div class="p-6 rounded-xl flex flex-col gap-2 justify-center bg-white dark:bg-gray-700">
                 <div class="text-2xl">
                     Hours this week
                 </div>
@@ -24,7 +24,7 @@ const props = defineProps(['coursesCount', 'hoursThisWeek', 'completedTasks', 'r
                     {{ hoursThisWeek }}
                 </div>
             </div>
-            <div class="p-6 rounded-xl flex flex-col gap-2 justify-center bg-white dark:bg-gray-800">
+            <div class="p-6 rounded-xl flex flex-col gap-2 justify-center bg-white dark:bg-gray-700">
                 <div class="text-2xl">
                     Completed Tasks
                 </div>
