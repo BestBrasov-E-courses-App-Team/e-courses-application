@@ -34,7 +34,7 @@ import LessonComponent from '../../Lessons/Parts/LessonComponent.vue'
 
 const props = defineProps({
   course: {
-    type: Array,
+    type: Object,
     default: [],
   }
 })
