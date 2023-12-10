@@ -16,6 +16,10 @@ const props = defineProps(['coursesCount', 'hoursThisWeek', 'completedTasks', 'r
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white_dark:bg-gray-800 flex flex-col gap-4 overflow-auto w-full">
+                    <div>
+                        <InlineMessage v-if="Math.random() > 0.4" severity="info">You are on a {{ parseInt(Math.random()*46) }} day streak. Reach 60 to win a branded Hoodie!🔥</InlineMessage>
+                        <InlineMessage v-else severity="success">Congratulations steady owl. You have achiebed a 60 day streak and just won a branded Hoodie!🎊</InlineMessage>
+                    </div>
                     <Welcome :courses-count="coursesCount" :hours-this-week="hoursThisWeek" :completed-tasks="completedTasks" :recent-courses="recentCourses"/>
                     <div class="text-2xl pt-8">
                         Recently Added Courses

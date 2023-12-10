@@ -1,8 +1,8 @@
 <template>
-  <div class="card flex align-items-center justify-content-center">
+  <div class="card flex align-items-center justify-content-center rounded-md">
     <Card style="">
         <template #header>
-            <img alt="user header" src="https://primefaces.org/cdn/primevue/images/usercard.png" />
+            <img class="rounded-md_" alt="user header" :src="course?.thumbnail_url ?? 'https://primefaces.org/cdn/primevue/images/usercard.png'" />
         </template>
         <template #title> {{ course?.title }} </template>
         <template #subtitle> {{ '' }} </template>

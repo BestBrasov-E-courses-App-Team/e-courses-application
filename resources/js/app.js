@@ -38,6 +38,7 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import ColumnGroup from "primevue/columngroup";
 import Row from "primevue/row";
+import InlineMessage from 'primevue/inlinemessage';
 import Paginator from "primevue/paginator";
 import Carousel from "primevue/carousel";
 import Accordion from "primevue/accordion";
@@ -95,6 +96,7 @@ createInertiaApp({
             .component("Fieldset", Fieldset)
             .component("InputGroupAddon", InputGroupAddon)
             .component("InputGroup", InputGroup)
+            .component("InlineMessage", InlineMessage)
             .component("Checkbox", Checkbox)
             .component("RadioButton", RadioButton)
             .component("Dropdown", Dropdown)
