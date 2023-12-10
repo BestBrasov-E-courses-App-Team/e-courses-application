@@ -13,6 +13,9 @@
         <template #content>
             <p class="m-0">
                 {{ course?.description ?? 'No description...' }}
+                <div class="w-full flex flex-row gap-1 overflow-auto my-1">
+                  <Tag v-for="(tag, index) in course?.misc?.tags" :key="index" :value="tag"></Tag>
+                </div>
             </p>
         </template>
         <template #footer>
@@ -29,6 +32,7 @@
 <script setup>
 import { router } from '@inertiajs/vue3';
 import Courses from '../Courses.vue';
+import Tag from 'primevue/tag';
 
 const props = defineProps({
   course: Object

@@ -6,7 +6,7 @@
       </template>
 
       <template #center>
-          <span class="p-input-icon-left">
+          <span class="p-input-icon-left" v-tooltip.bottom="'Search by course title, description, tags and author\'s name'">
               <i class="pi pi-search" />
               <InputText placeholder="Start typing to search..." v-model="searchVal" />
           </span>

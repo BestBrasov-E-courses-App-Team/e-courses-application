@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DateTimeInterface;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,10 @@ class Course extends Model
     protected $appends = [
         'thumbnail_url',
         'video_thumbnail_url',
+    ];
+
+    protected $casts = [
+        'misc' => AsArrayObject::class,
     ];
 
 
@@ -42,6 +47,7 @@ class Course extends Model
         'columns' => [
             'courses.title' => 50,
             'courses.description' => 30,
+            'courses.misc' => 30,
             'users.name' => 20,
             'users.email' => 15,
             'course_sections.title' => 2,

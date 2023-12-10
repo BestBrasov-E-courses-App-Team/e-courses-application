@@ -41,6 +41,7 @@ import Row from "primevue/row";
 import InlineMessage from 'primevue/inlinemessage';
 import Paginator from "primevue/paginator";
 import Carousel from "primevue/carousel";
+import AutoComplete from "primevue/autocomplete";
 import Calendar from "primevue/calendar";
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
@@ -102,6 +103,7 @@ createInertiaApp({
             .component("Checkbox", Checkbox)
             .component("RadioButton", RadioButton)
             .component("Dropdown", Dropdown)
+            .component("AutoComplete", AutoComplete)
             .component("DataTable", DataTable)
             .component("Column", Column)
             .component("ColumnGroup", ColumnGroup)

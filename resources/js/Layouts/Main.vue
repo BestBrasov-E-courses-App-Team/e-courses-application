@@ -60,7 +60,6 @@ function runSessionMessages($obj) {
 }
 
 onMounted(() => {
-  console.log(page);
   runSessionMessages(page)
 });
 

@@ -57,6 +57,9 @@ class CourseController extends Controller
         try {
             $thumnailPath = $request->thumbnail ? $request->file('thumbnail')->storePubliclyAs('public/courses/thumbnails', time().'-'. $request->file('thumbnail')->getClientOriginalName()) : null;
             $thumnailVideoPath = $request->video_thumbnail ? $request->file('video_thumbnail')->storePubliclyAs('public/courses/video_thumbnails', time().'-'. $request->file('video_thumbnail')->getClientOriginalName()) : null;
+            $misc = [];
+
+            $misc['tags'] = $request->tags ?? [];
 
             $course = Course::create([
                 'title' => $request->title,
@@ -64,6 +67,7 @@ class CourseController extends Controller
                 'description' => $request->description,
                 'thumbnail' => $thumnailPath,
                 'video_thumbnail' => $thumnailVideoPath,
+                'misc' => $misc,
             ]);
 
             $this->flashSuccess("Course $request->title has been added!");
