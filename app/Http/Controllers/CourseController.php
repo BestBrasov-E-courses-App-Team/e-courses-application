@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CourseController extends Controller
@@ -12,9 +13,14 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::all();
+        if ($request->q) {
+            $courses = Course::search($request->q);
+        } else {
+            $courses = Course::orderBy('id', 'desc');
+        }
+        $courses = $courses->paginate();
 
         return Inertia::render('App/Courses/Parts/Index', [
             'courses' => $courses,

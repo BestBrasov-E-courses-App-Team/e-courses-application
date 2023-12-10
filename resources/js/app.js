@@ -24,6 +24,7 @@ import MultiSelect from 'primevue/multiselect';
 import Badge from "primevue/badge";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
+import Toolbar from "primevue/toolbar";
 import Panel from "primevue/panel";
 import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
@@ -85,6 +86,7 @@ createInertiaApp({
             .component("TabView", TabView)
             .component("SelectButton", SelectButton)
             .component("TabPanel", TabPanel)
+            .component("Toolbar", Toolbar)
             .component("Tree", Tree)
             .component("Panel", Panel)
             .component("InputText", InputText)

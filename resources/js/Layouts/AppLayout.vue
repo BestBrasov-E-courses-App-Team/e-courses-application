@@ -292,8 +292,8 @@ const logout = () => {
             </nav>
 
             <!-- Page Heading -->
-            <header v-if="$slots.header" class="bg-white dark:bg-gray-800 shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex gap-4 items-center justify-between">
+            <header v-if="$slots.header" class="bg-white_dark:bg-gray-800 shadow">
+                <div class="max-w-7xl mx-auto py-6 lg:py-8 px-4 sm:px-6 _lg:px-8 flex gap-4 items-center justify-between">
                     <slot name="header" />
                     <div @click="back" class=" hover:cursor-pointer"><i class="pi pi-arrow-left mr-2"></i> Back</div>
                 </div>

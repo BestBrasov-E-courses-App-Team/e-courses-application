@@ -1,5 +1,5 @@
 <template>
-  <Courses>
+  <Courses title="Courses | Learn">
     <div>
       <div class="flex gap-4">
         <div class="basis-2/3 w-full">

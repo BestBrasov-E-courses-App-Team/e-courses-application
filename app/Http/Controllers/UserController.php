@@ -20,6 +20,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::with('roles');
+        if ($request->q) {
+            $users = $users->search($request->q);
+        } else {
+            $users = $users;
+        }
         $users = $users->paginate(20);
         return Inertia::render('App/Users/Parts/Index', [
             'users' => $users,
