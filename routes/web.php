@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseSectionController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\SectionLessonController;
 use App\Http\Controllers\UserController;
+use App\Models\Course;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,7 +36,12 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+
+        $coursesCount = Course::count();
+        $recentCourses = Course::orderBy('id', 'desc')->take(6)->get();
+        $hoursThisWeek = rand(1, 24);
+        $completedTasks = rand(1, 14);
+        return Inertia::render('Dashboard', compact('coursesCount', 'hoursThisWeek', 'completedTasks', 'recentCourses'));
     })->name('dashboard');
     
     Route::resource('users', UserController::class);

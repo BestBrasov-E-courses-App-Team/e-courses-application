@@ -12,9 +12,11 @@
             </p>
         </template>
         <template #footer>
+          <div class="flex flex-wrap justify-center_ gap-4">
             <Button v-if="is('admin|content-manager|teacher')" icon="pi pi-book" label="Open Course" @click="router.get(route('courses.show', course.id))" />
             <Button v-if="is('student')" icon="pi pi-book" label="Go to Course" @click="router.get(route('courses.details', course.id))" />
-            <Button icon="pi pi-clock" label="Take Later" severity="secondary" style="margin-left: 0.5em" />
+            <Button icon="pi pi-clock" label="Take Later" severity="secondary" style="" />
+          </div>
         </template>
     </Card>
   </div>
