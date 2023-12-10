@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
@@ -31,6 +31,14 @@ const switchToTeam = (team) => {
 const logout = () => {
     router.post(route('logout'));
 };
+const permissionsIssetOrReload = () => {
+    if(!window.Laravel?.jsPermissions?.permissions) {
+        window.location.reload()
+    }
+}
+onMounted(() => {
+    permissionsIssetOrReload()
+})
 </script>
 
 <template>

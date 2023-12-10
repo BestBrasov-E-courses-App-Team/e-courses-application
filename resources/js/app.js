@@ -121,7 +121,7 @@ createInertiaApp({
 
             .component("Main", Main)
 
-            .use(PrimeVue)
+            .use(PrimeVue, { ripple: true })
 
             .use(plugin)
             .use(pinia)
