@@ -57,10 +57,10 @@ const logout = () => {
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('courses.index')" :active="route().current('courses.*')">
+                                <NavLink v-if="can('courses.view')" :href="route('courses.index')" :active="route().current('courses.*')">
                                     Courses
                                 </NavLink>
-                                <NavLink :href="route('users.index')" :active="route().current('users.*')">
+                                <NavLink v-if="can('users.view')" :href="route('users.index')" :active="route().current('users.*')">
                                     Users
                                 </NavLink>
                             </div>
@@ -206,10 +206,10 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('courses.index')" :active="route().current('courses.*')">
+                        <ResponsiveNavLink v-if="can('courses.view')" :href="route('courses.index')" :active="route().current('courses.*')">
                             Courses
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('users.index')" :active="route().current('users.*')">
+                        <ResponsiveNavLink v-if="can('users.view')" :href="route('users.index')" :active="route().current('users.*')">
                             Users
                         </ResponsiveNavLink>
                     </div>

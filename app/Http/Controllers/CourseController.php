@@ -11,6 +11,14 @@ use Inertia\Inertia;
 class CourseController extends Controller
 {
     /**
+     * Create the controller instance.
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Course::class, 'course');
+    }
+    
+    /**
      * Display a listing of the resource.
      */
     public function index(Request $request)

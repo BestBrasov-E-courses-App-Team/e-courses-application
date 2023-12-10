@@ -13,7 +13,7 @@ class SectionLessonPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->can('lessons.view');
     }
 
     /**
@@ -21,7 +21,7 @@ class SectionLessonPolicy
      */
     public function view(User $user, SectionLesson $sectionLesson): bool
     {
-        //
+        return $user->can('lessons.view');
     }
 
     /**
@@ -29,7 +29,7 @@ class SectionLessonPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->can('lessons.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class SectionLessonPolicy
      */
     public function update(User $user, SectionLesson $sectionLesson): bool
     {
-        //
+        return $user->can('lessons.edit');
     }
 
     /**
@@ -45,7 +45,7 @@ class SectionLessonPolicy
      */
     public function delete(User $user, SectionLesson $sectionLesson): bool
     {
-        //
+        return $user->can('lessons.delete');
     }
 
     /**
@@ -53,7 +53,7 @@ class SectionLessonPolicy
      */
     public function restore(User $user, SectionLesson $sectionLesson): bool
     {
-        //
+        return $user->can('lessons.delete');
     }
 
     /**
@@ -61,6 +61,6 @@ class SectionLessonPolicy
      */
     public function forceDelete(User $user, SectionLesson $sectionLesson): bool
     {
-        //
+        return $user->can('lessons.delete');
     }
 }

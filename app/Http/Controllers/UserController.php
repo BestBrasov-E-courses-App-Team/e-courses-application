@@ -19,6 +19,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        abort_if(!$request->user()->can('users.view'), 403);
+
         $users = User::with('roles');
         if ($request->q) {
             $users = $users->search($request->q);
@@ -36,6 +38,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        abort_if(!auth()->user()->can('users.create'), 403);
+
         $roles = Role::all()->pluck('name');
         return Inertia::render('App/Users/Parts/Create', [
             'roles' => $roles,
@@ -47,6 +51,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        abort_if(!auth()->user()->can('users.create'), 403);
+
         $validator = Validator::make($request->all(), [
             'name' => 'bail|required',
             'email' => 'bail|required|email|unique:users,email',
@@ -81,6 +87,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        abort_if(!auth()->user()->can('users.edit'), 403);
+
         if ($user) {
             $userRoles = $user->roles->pluck('name');
         }
@@ -97,7 +105,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-      
+        abort_if(!auth()->user()->can('users.edit'), 403);
+
         $validator = Validator::make($request->all(), [
             'name' => 'bail|required',
             'email' => "bail|required|email|unique:users,email,{$user->id},id",
@@ -123,6 +132,8 @@ class UserController extends Controller
      */
     public function destroy($user, Request $request)
     {
+        abort_if(!auth()->user()->can('users.delete'), 403);
+
         $user->delete();
         return;
     }
