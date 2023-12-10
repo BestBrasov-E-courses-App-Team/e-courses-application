@@ -24,11 +24,16 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $courses = Course::with(['author:id,name,email']);
+        if ($request->s_date) {
+            $courses = $courses->whereDate('courses.created_at', '>=', $request->s_date);
+        }
+        if ($request->e_date) {
+            $courses = $courses->whereDate('courses.created_at', '<=', $request->e_date);
+        }
         if ($request->q) {
             $courses =$courses->search($request->q);
-        } else {
-            $courses =$courses->orderBy('id', 'desc');
         }
+        $courses = $courses->orderBy($request?->sort_by ?? 'id', $request?->sort_order ?? 'desc');
         $courses = $courses->paginate();
 
         return Inertia::render('App/Courses/Parts/Index', [

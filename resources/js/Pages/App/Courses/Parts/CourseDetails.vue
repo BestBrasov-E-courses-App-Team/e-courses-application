@@ -7,14 +7,18 @@
           <Panel v-else :header="`Course Title: ${course.title}`">
             <div>
               <video class="w-full" v-if="course.video_thumbnail_url" :src="course.video_thumbnail_url" :poster="course.thumbnail_url" controls>
-                  <!-- <source src="video.mp4" type="video/mp4"> -->
               </video>
               <img class="w-full" v-else-if="course.thumbnail_url" :src="course.thumbnail_url" alt="" srcset="">
             </div>
             <h3 class="font-bold py-4 text-lg">Course Description</h3>
-            <p class="my-4">
-              <b>Authored By:</b> {{ course?.author?.name }} - {{ course.created_at }}
-            </p>
+            <div class="my-4 flex flex-col gap-2">
+              <div>
+                <b>Authored By:</b> {{ course?.author?.name }}
+              </div>
+              <div>
+                <b>Created At:</b> {{ course.created_at }}
+              </div>
+            </div>
             <p class="m-0">
                 {{ course.description }}
             </p>
@@ -29,7 +33,6 @@
 </template>
 
 <script setup>
-import { router, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import Courses from '../Courses.vue';
 import CourseSidebar from './CourseSidebar.vue';
@@ -44,9 +47,6 @@ const props = defineProps({
 const activeLesson = ref(null)
 const openLesson = (lesson) => {
   activeLesson.value = lesson
-}
-const openLCourseDetails = (event) => {
-
 }
 </script>
 

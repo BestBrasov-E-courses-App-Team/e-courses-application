@@ -2,13 +2,13 @@
   <div>
     <Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-30rem">
        <template #default="slotProps">
-          <b>{{ slotProps.node.label }}</b>
+          <b class="hover:cursor-pointer">{{ slotProps.node.label }}</b>
       </template>
       <template #url="slotProps">
-          <div @click="$emit('changeLesson', slotProps.node.self)">{{ slotProps.node.label }}</div>
+          <div class="hover:cursor-pointer" @click="$emit('changeLesson', slotProps.node.self)">{{ slotProps.node.label }}</div>
       </template>
       <template #home="slotProps">
-          <b @click="$emit('changeLesson', slotProps.node.self)">{{ slotProps.node.label }}</b>
+          <b class="hover:cursor-pointer" @click="$emit('changeLesson', slotProps.node.self)">{{ slotProps.node.label }}</b>
       </template>
     </Tree>
   </div>

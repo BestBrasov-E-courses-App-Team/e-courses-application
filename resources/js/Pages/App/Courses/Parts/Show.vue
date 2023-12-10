@@ -7,9 +7,14 @@
         </video>
         <img class="w-full" v-else-if="course.thumbnail_url" :src="course.thumbnail_url" alt="" srcset="">
       </div>
-      <p class="my-4">
-          <b>Authored By:</b> {{ course?.author?.name }} - {{ course.created_at }}
-      </p>
+      <div class="my-4 flex flex-col gap-2">
+          <div>
+            <b>Authored By:</b> {{ course?.author?.name }}
+          </div>
+          <div>
+            <b>Created At:</b> {{ course.created_at }}
+          </div>
+        </div>
       <p class="my-4">
           {{ course.description }}
       </p>

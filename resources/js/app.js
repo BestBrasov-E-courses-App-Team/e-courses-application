@@ -41,6 +41,7 @@ import Row from "primevue/row";
 import InlineMessage from 'primevue/inlinemessage';
 import Paginator from "primevue/paginator";
 import Carousel from "primevue/carousel";
+import Calendar from "primevue/calendar";
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
 import Tooltip from "primevue/tooltip";
@@ -87,6 +88,7 @@ createInertiaApp({
             .component("TabView", TabView)
             .component("SelectButton", SelectButton)
             .component("TabPanel", TabPanel)
+            .component("Calendar", Calendar)
             .component("Toolbar", Toolbar)
             .component("Tree", Tree)
             .component("Panel", Panel)
