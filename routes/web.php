@@ -40,6 +40,7 @@ Route::middleware([
     
     Route::resource('users', UserController::class);
     Route::resource('courses', CourseController::class);
+    Route::get('courses/{course}/details', [CourseController::class, 'details'])->name('courses.details');
     Route::resource('course-sections', CourseSectionController::class);
     Route::resource('section-lessons', SectionLessonController::class);
     Route::resource('attachments', AttachmentController::class);

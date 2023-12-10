@@ -14,6 +14,12 @@ defineProps({
 
 const showingNavigationDropdown = ref(false);
 
+
+const back = () => {
+    window.history.back();
+}
+
+
 const switchToTeam = (team) => {
     router.put(route('current-team.update'), {
         team_id: team.id,
@@ -200,6 +206,12 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('courses.index')" :active="route().current('courses.*')">
+                            Courses
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('users.index')" :active="route().current('users.*')">
+                            Users
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -281,8 +293,9 @@ const logout = () => {
 
             <!-- Page Heading -->
             <header v-if="$slots.header" class="bg-white dark:bg-gray-800 shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex gap-4 items-center justify-between">
                     <slot name="header" />
+                    <div @click="back" class=" hover:cursor-pointer"><i class="pi pi-arrow-left mr-2"></i> Back</div>
                 </div>
             </header>
 

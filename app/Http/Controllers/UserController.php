@@ -80,7 +80,7 @@ class UserController extends Controller
             $userRoles = $user->roles->pluck('name');
         }
         $roles = Role::all()->pluck('name');
-        return Inertia::render('App/Users/Parts/Show', [
+        return Inertia::render('App/Users/Parts/Edit', [
             'user' => $user,
             'roles' => $roles,
             'userRoles' => $userRoles,

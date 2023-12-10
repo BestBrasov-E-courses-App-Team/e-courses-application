@@ -56,8 +56,25 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $course->load('sections');
+        $course->load(['sections', 'sections.lessons']);
+        /* foreach ($course->sections as  $key => $courseSection) {
+            $course->sections[$key] = $courseSection->load('courses');
+        } */
         return Inertia::render('App/Courses/Parts/Show', [
+            'course' => $course,
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function details(Course $course)
+    {
+        $course->load(['sections', 'sections.lessons']);
+        /* foreach ($course->sections as  $key => $courseSection) {
+            $course->sections[$key] = $courseSection->load('courses');
+        } */
+        return Inertia::render('App/Courses/Parts/CourseDetails', [
             'course' => $course,
         ]);
     }

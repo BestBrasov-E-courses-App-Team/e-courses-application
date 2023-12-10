@@ -1,5 +1,8 @@
 <template>
   <Users title="Create User">
+    <!-- <div class="flex py-6 justify-start">
+      <Button @click="router.get(route('users.index'))"><i class="pi pi-arrow-left mr-2"></i> Back</Button>
+    </div> -->
     <div class="w-full sm:w-4/5 sm:max-w-3xl mx-auto">
       <Fieldset legend="New User">
         <form class="flex flex-col gap-4" @submit.prevent="addUser">
@@ -44,7 +47,7 @@
 </template>
 
 <script setup>
-import { useForm } from '@inertiajs/vue3';
+import { router, useForm } from '@inertiajs/vue3';
 import Users from '../Users.vue';
 
 const props = defineProps({

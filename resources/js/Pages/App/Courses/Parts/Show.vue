@@ -34,11 +34,7 @@
             </div>
           </li>
         </ul>
-        <!-- <Tree :value="nodes" class="w-full md:w-30rem_">
-        </Tree> -->
-        <!-- <template #default="slotProps">
-            <b>{{ slotProps.node.title }}</b>
-        </template> -->
+        <!-- <CourseSidebar :course="course"/> -->
       </div>
     </Panel>
   </Courses>
@@ -49,6 +45,7 @@ import { router, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import Courses from '../Courses.vue';
 import AddSection from './AddSection.vue';
+import CourseSidebar from './CourseSidebar.vue';
 
 const props = defineProps({
   course: {
@@ -56,21 +53,6 @@ const props = defineProps({
     default: {},
   }
 })
-const nodes = ref(props.course.sections.map(
-  (el, index) => {
-    return {
-      key: index,
-      label: el.title,
-      children: el?.courses?.map(
-        (el, index_i) => {
-          return {
-            key: `${index}-${index_i}`,
-            label: el.title,
-          }
-        })
-    }
-  }
-))
 </script>
 
 <style></style>

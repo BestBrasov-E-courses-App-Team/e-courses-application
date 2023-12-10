@@ -1,6 +1,6 @@
 <template>
   <div class="card flex align-items-center justify-content-center">
-    <Card style="width: 25em">
+    <Card style="">
         <template #header>
             <img alt="user header" src="https://primefaces.org/cdn/primevue/images/usercard.png" />
         </template>
@@ -12,7 +12,8 @@
             </p>
         </template>
         <template #footer>
-            <Button icon="pi pi-book" label="Go to Course" @click="router.get(route('courses.show', course.id))" />
+            <Button v-if="is('admin|content-manager|teacher')" icon="pi pi-book" label="Open Course" @click="router.get(route('courses.show', course.id))" />
+            <Button v-if="is('student')" icon="pi pi-book" label="Go to Course" @click="router.get(route('courses.details', course.id))" />
             <Button icon="pi pi-clock" label="Take Later" severity="secondary" style="margin-left: 0.5em" />
         </template>
     </Card>

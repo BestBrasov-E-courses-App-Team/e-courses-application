@@ -20,7 +20,6 @@
         </p>
     </Panel>
     <Panel header="Attachments" class="mt-4">
-      <!-- <AddAttachment :lesson-id="lesson.id"/> -->
       <div v-if="!lesson?.attachments?.length">
         No attachments have been added on this lesson
       </div>
@@ -38,7 +37,6 @@
 
 <script setup>
 import Users from '../Users.vue';
-import AddAttachment from './AddAttachment.vue';
 
 const props = defineProps({
   lesson: {
