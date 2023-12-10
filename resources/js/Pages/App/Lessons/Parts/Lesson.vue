@@ -4,7 +4,7 @@
         <template #header>
             <img alt="user header" src="https://primefaces.org/cdn/primevue/images/usercard.png" />
         </template>
-        <template #title> {{ lesson?.title }} </template>
+        <template #title> Title: {{ lesson?.title }} </template>
         <template #subtitle> {{ '' }} </template>
         <template #content>
             <p class="m-0">
