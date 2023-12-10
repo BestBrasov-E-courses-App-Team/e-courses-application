@@ -8,6 +8,9 @@
         <img class="w-full" v-else-if="course.thumbnail_url" :src="course.thumbnail_url" alt="" srcset="">
       </div>
       <p class="my-4">
+          <b>Authored By:</b> {{ course?.author?.name }} - {{ course.created_at }}
+      </p>
+      <p class="my-4">
           {{ course.description }}
       </p>
     </Panel>

@@ -18,7 +18,7 @@
       <!-- <Button v-if="can('courses.create')" @click="router.get(route('courses.create'))">Add New Course +</Button> -->
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <Course v-for="course in courses?.data" :key="course.id" :course="course"/>
+      <Course v-for="course in courses?.data" :key="course.id" :course="course" class="w-full"/>
     </div>
   </Courses>
 </template>

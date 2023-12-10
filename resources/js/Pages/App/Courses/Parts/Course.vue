@@ -1,11 +1,15 @@
 <template>
-  <div class="card flex align-items-center justify-content-center rounded-md">
+  <div class="rounded-md">
     <Card style="">
         <template #header>
-            <img class="rounded-md_" alt="user header" :src="course?.thumbnail_url ?? 'https://primefaces.org/cdn/primevue/images/usercard.png'" />
+            <img class="rounded-md_ w-full h-[12rem] object-cover" alt="user header" :src="course?.thumbnail_url ?? 'https://primefaces.org/cdn/primevue/images/usercard.png'" />
         </template>
         <template #title> {{ course?.title }} </template>
-        <template #subtitle> {{ '' }} </template>
+        <template #subtitle>
+          <div>
+            Authored By: {{ course?.author?.name }} - {{ course.created_at }}
+          </div>
+        </template>
         <template #content>
             <p class="m-0">
                 {{ course?.description ?? 'No description...' }}
@@ -24,6 +28,7 @@
 
 <script setup>
 import { router } from '@inertiajs/vue3';
+import Courses from '../Courses.vue';
 
 const props = defineProps({
   course: Object

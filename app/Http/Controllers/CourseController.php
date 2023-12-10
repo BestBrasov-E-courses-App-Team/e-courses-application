@@ -17,16 +17,17 @@ class CourseController extends Controller
     {
         $this->authorizeResource(Course::class, 'course');
     }
-    
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
+        $courses = Course::with(['author:id,name,email']);
         if ($request->q) {
-            $courses = Course::search($request->q);
+            $courses =$courses->search($request->q);
         } else {
-            $courses = Course::orderBy('id', 'desc');
+            $courses =$courses->orderBy('id', 'desc');
         }
         $courses = $courses->paginate();
 
@@ -54,6 +55,7 @@ class CourseController extends Controller
 
             $course = Course::create([
                 'title' => $request->title,
+                'user_id' => auth()->user()?->id,
                 'description' => $request->description,
                 'thumbnail' => $thumnailPath,
                 'video_thumbnail' => $thumnailVideoPath,
@@ -72,9 +74,6 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         $course->load(['sections', 'sections.lessons']);
-        /* foreach ($course->sections as  $key => $courseSection) {
-            $course->sections[$key] = $courseSection->load('courses');
-        } */
         return Inertia::render('App/Courses/Parts/Show', [
             'course' => $course,
         ]);
@@ -86,9 +85,6 @@ class CourseController extends Controller
     public function details(Course $course)
     {
         $course->load(['sections', 'sections.lessons']);
-        /* foreach ($course->sections as  $key => $courseSection) {
-            $course->sections[$key] = $courseSection->load('courses');
-        } */
         return Inertia::render('App/Courses/Parts/CourseDetails', [
             'course' => $course,
         ]);

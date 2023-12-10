@@ -67,6 +67,18 @@ class RolesAndPermissionsSeeder extends Seeder
             Role::whereName('content-manager')->first()->givePermissionTo(['courses.view', 'lessons.view', 'courses.edit', 'lessons.edit','courses.create', 'lessons.create']);
             Role::whereName('admin')->first()->givePermissionTo(Permission::all());
 
+            $email = 'admin@gmail.com';
+            $superUser = \App\Models\User::where('email', $email)->first();
+
+            if (!$superUser) {
+                $superUser = \App\Models\User::factory()->create([
+                    'name' => 'Super Admin',
+                    'email' => $email,
+                ]);
+            }
+
+            $superUser->syncRoles(['admin']);
+
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();

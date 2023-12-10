@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,12 +15,17 @@ class Course extends Model
     use SearchableTrait;
 
     protected $guarded = [];
+    protected $with = ['author'];
     protected $appends = [
         'thumbnail_url',
         'video_thumbnail_url',
     ];
 
 
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format('d/m/Y H:i:s');
+    }
     /**
      * Searchable rules.
      *
@@ -36,15 +42,21 @@ class Course extends Model
         'columns' => [
             'courses.title' => 50,
             'courses.description' => 30,
+            'users.name' => 20,
+            'users.email' => 15,
             'course_sections.title' => 2,
         ],
         'joins' => [
             'course_sections' => ['courses.id', 'course_sections.course_id'],
+            'users' => ['courses.user_id', 'users.id'],
         ],
     ];
 
     public function sections() {
         return $this->hasMany(CourseSection::class);
+    }
+    public function author() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function thumbnailUrl(): Attribute
     {
